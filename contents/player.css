@@ -1,6 +1,10 @@
-#player {
-    width: 100px;
+#player-area {
+    width: 500px;
     background: red;
     color: white;
     position: fixed;
+  }
+
+  #player {
+    width: 100px;
   }
