@@ -3,7 +3,7 @@ export const dialogue = [
     { message: "Ahh, I see...", concatenate: "title"},
     { message: "...some sort of purgatory."},
     { message: "Not without its charms, but cold, icy cold."},
-    { message: "But look, the sun is rising", action: [{function: "execute_sunrise", delay: 5000}]},
+    { message: "But look, the sun is rising", action: [{function: "execute_sunrise", delay: 1000}]},
     { message: "Well, there are words, but are they worth saying?", answers: [
       {message: "Yes", next: "say_yes"}, {message: "No", next: "say_end"}
     ]},
