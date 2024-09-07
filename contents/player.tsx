@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import cssText from "data-text:~/contents/player.css"
 import type { PlasmoCSConfig } from "plasmo"
+import { dialogue } from "~dialogue"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -20,13 +21,54 @@ const PlasmoOverlay = () => {
     const [title, setTitle] = useState(null)
     const [isMenuVisible, setIsMenuVisible] = useState(false)
     const [isSpeechBubbleVisible, setIsSpeechBubbleVisible] = useState(false)
+    const [speechBubbleContents, setSpeechBubbleContents] = useState("")
+    const [dialogueOptionIndex, setDialogueOptionIndex] = useState(0)
+    const [isNextDisabled, setIsNextDisabled] = useState(false)
       
+    function executeSunrise() {
+      console.log('sunrise')
+    }
+
+
 useEffect(() => {
   if (document?.querySelector('h1')) {
     setTitle(document?.querySelector('h1').innerText)
   }
 }, [])
 
+const functions = {
+  "execute_sunrise": executeSunrise,
+
+}
+
+function proceedDialogue() {
+  if (dialogueOptionIndex >= dialogue.length) {
+    return
+  }
+  let currentStep = dialogue[dialogueOptionIndex];
+    if (currentStep.message) {
+      setSpeechBubbleContents(currentStep.message);
+    }
+    if (currentStep.action) {
+      setIsNextDisabled(true)
+       currentStep.action.forEach(async (item) => {
+        if (!item.delay) {
+          functions[item.function]()
+          setIsNextDisabled(false)
+        } else {
+          await new Promise<void>((resolve) => setTimeout(() => {functions[item.function](); resolve()}, item.delay))
+          setIsNextDisabled(false)
+        }
+      })
+     
+    }
+    if (currentStep.next) {
+      setDialogueOptionIndex(dialogue.findIndex((element) => element.label === currentStep.next))
+    } else {
+      setDialogueOptionIndex(dialogueOptionIndex + 1)
+    }
+    
+  }
 
   return (
     <div
@@ -40,10 +82,18 @@ useEffect(() => {
       >
         {isMenuVisible && <div>
           <button onClick={() => {
-          setIsSpeechBubbleVisible(!isSpeechBubbleVisible)
+               if (!isSpeechBubbleVisible) {
+                proceedDialogue()
+              }
           setIsMenuVisible(!isMenuVisible)
+          setIsSpeechBubbleVisible(!isSpeechBubbleVisible)      
           }}>Speak</button></div>}
-        {isSpeechBubbleVisible && <span>{`Ahhh, ${title}!`}</span>}
+        {isSpeechBubbleVisible && 
+        <div>
+          <span>{speechBubbleContents}</span>
+          <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>
+          </div>
+          }
         <div   style={{
         display: 'flex',
         flexDirection: 'column'
