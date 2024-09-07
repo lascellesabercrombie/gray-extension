@@ -26,9 +26,8 @@ const PlasmoOverlay = () => {
     const [isNextDisabled, setIsNextDisabled] = useState(false)
       
     function executeSunrise() {
-      console.log('sunrise')
+      document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
     }
-
 
 useEffect(() => {
   if (document?.querySelector('h1')) {
