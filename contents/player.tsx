@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import cssText from "data-text:~/contents/player.css"
+import './player.css'
 import type { PlasmoCSConfig } from "plasmo"
 import { dialogue } from "~dialogue"
+import playerAvatar from "data-base64:~assets/janine_1982_vitruvian.png"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -100,7 +102,7 @@ function proceedDialogue() {
          <button onClick={() => {setBottom(bottom + 10)}}>Up</button>
          <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <button onClick={() => {setRight(right + 10)}}>Left</button>
-          <span>Player</span>
+          <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"></img>
         <button onClick={() => {
           setIsMenuVisible(!isMenuVisible)
           setIsSpeechBubbleVisible(false)
