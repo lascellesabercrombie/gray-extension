@@ -26,6 +26,7 @@ const PlasmoOverlay = () => {
     const [speechBubbleContents, setSpeechBubbleContents] = useState("")
     const [dialogueOptionIndex, setDialogueOptionIndex] = useState(0)
     const [isNextDisabled, setIsNextDisabled] = useState(false)
+    const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
       
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
@@ -101,13 +102,14 @@ function proceedDialogue() {
         }}>
          <button onClick={() => {setBottom(bottom + 10)}}>Up</button>
          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <button onClick={() => {setRight(right + 10)}}>Left</button>
-          <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"></img>
+        <button onClick={() => {setRight(right + 10); setIsPlayerFacingLeft(true)}}>Left</button>
+          <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
+          style={{transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''}}></img>
         <button onClick={() => {
           setIsMenuVisible(!isMenuVisible)
           setIsSpeechBubbleVisible(false)
           }}>See menu</button>
-        <button onClick={() => {setRight(right - 10)}}>Right</button>
+        <button onClick={() => {setRight(right - 10); setIsPlayerFacingLeft(false)}}>Right</button>
         </div>
         <button onClick={() => {setBottom(bottom - 10)}}>Down</button>
         </div>
