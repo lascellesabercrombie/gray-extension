@@ -17,7 +17,7 @@ export const getStyle = () => {
 
 
 
-const PlasmoOverlay = () => {
+const Player = () => {
     const [right, setRight] = useState(10)
     const [bottom, setBottom] = useState(10)
     const [title, setTitle] = useState(null)
@@ -27,9 +27,29 @@ const PlasmoOverlay = () => {
     const [dialogueOptionIndex, setDialogueOptionIndex] = useState(0)
     const [isNextDisabled, setIsNextDisabled] = useState(false)
     const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
+    const [isAnswerChoice, setIsAnswerChoice] = useState(false)
       
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
+    }
+
+    function executeSayWords() {
+      setSpeechBubbleContents(title)
+    }
+
+    function executeSayWords2() {
+      const titleLength = title?.split(" ")?.length
+       if (titleLength < 1) {
+          setSpeechBubbleContents("Nothing? Oh well.")
+        } else if (titleLength === 1) {
+          setSpeechBubbleContents("It's terse at least.")
+        } else {
+          setSpeechBubbleContents("Verbose rubbish.")
+        }
+    }
+
+    function executeEatWords() {
+      console.log('eat words')
     }
 
 useEffect(() => {
@@ -40,29 +60,42 @@ useEffect(() => {
 
 const functions = {
   "execute_sunrise": executeSunrise,
+  "execute_say_words": executeSayWords,
+  "execute_say_words_2": executeSayWords2,
+  "execute_eat_words": executeEatWords
 
 }
 
-function proceedDialogue() {
+
+function handleBinaryChoice(choice: 0 | 1) {
+  let currentStep = dialogue[dialogueOptionIndex];
+  setIsAnswerChoice(false)
+  proceedDialogue(dialogue.findIndex((element) => element.label === currentStep.answers[choice].next))
+}
+
+async function proceedDialogue(index?: number) {
   if (dialogueOptionIndex >= dialogue.length) {
     return
   }
-  let currentStep = dialogue[dialogueOptionIndex];
+  let currentStep = dialogue[index || dialogueOptionIndex];
     if (currentStep.message) {
       setSpeechBubbleContents(currentStep.message);
     }
     if (currentStep.action) {
       setIsNextDisabled(true)
-       currentStep.action.forEach(async (item) => {
-        if (!item.delay) {
-          functions[item.function]()
+        if (!currentStep.action.delay) {
+          functions[currentStep.action.function]()
           setIsNextDisabled(false)
         } else {
-          await new Promise<void>((resolve) => setTimeout(() => {functions[item.function](); resolve()}, item.delay))
+          await new Promise<void>((resolve) => setTimeout(() => {functions[currentStep.action.function](); resolve()}, currentStep.action.delay))
           setIsNextDisabled(false)
         }
-      })
+      }
      
+    if (currentStep.answers) {
+      return setIsAnswerChoice(true)
+    } else {
+      setIsAnswerChoice(false)
     }
     if (currentStep.next) {
       setDialogueOptionIndex(dialogue.findIndex((element) => element.label === currentStep.next))
@@ -93,7 +126,12 @@ function proceedDialogue() {
         {isSpeechBubbleVisible && 
         <div>
           <span>{speechBubbleContents}</span>
-          <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>
+          {isAnswerChoice ? 
+          <div>
+            <button onClick={() => handleBinaryChoice(1)}>Yes</button>
+            <button onClick={() => handleBinaryChoice(0)}>No</button>
+          </div> :
+          <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
           </div>
           }
         <div   style={{
@@ -119,4 +157,4 @@ function proceedDialogue() {
   )
 }
 
-export default PlasmoOverlay
+export default Player
