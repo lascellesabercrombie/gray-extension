@@ -56,7 +56,7 @@ useEffect(() => {
   if (document?.querySelector('h1')) {
     setTitle(document?.querySelector('h1').innerText)
   }
-}, [])
+}, [document?.querySelector('h1')])
 
 const functions = {
   "execute_sunrise": executeSunrise,
