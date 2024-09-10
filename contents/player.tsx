@@ -39,7 +39,7 @@ const Player = () => {
 
     function executeSayWords2() {
       const titleLength = title?.split(" ")?.length
-       if (titleLength < 1) {
+       if (!titleLength || titleLength < 1) {
           setSpeechBubbleContents("Nothing? Oh well.")
         } else if (titleLength === 1) {
           setSpeechBubbleContents("It's terse at least.")
