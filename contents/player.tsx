@@ -102,7 +102,7 @@ async function proceedDialogue(index?: number) {
     if (currentStep.next) {
       setDialogueOptionIndex(dialogue.findIndex((element) => element.label === currentStep.next))
     } else {
-      setDialogueOptionIndex(dialogueOptionIndex + 1)
+      setDialogueOptionIndex(index ? index + 1 : dialogueOptionIndex + 1)
     }
     
   }
