@@ -49,7 +49,9 @@ const Player = () => {
     }
 
     function executeEatWords() {
-      console.log('eat words')
+      if (document?.querySelector('h1')) {
+        document.querySelector('h1').innerText = ""
+      }
     }
 
 useEffect(() => {
