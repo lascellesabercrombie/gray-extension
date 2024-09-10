@@ -54,6 +54,10 @@ const Player = () => {
       }
     }
 
+    function executeAdulterateWords() {
+      console.log('words adulterated')
+    }
+
 useEffect(() => {
   if (document?.querySelector('h1')) {
     setTitle(document?.querySelector('h1').innerText)
@@ -64,7 +68,8 @@ const functions = {
   "execute_sunrise": executeSunrise,
   "execute_say_words": executeSayWords,
   "execute_say_words_2": executeSayWords2,
-  "execute_eat_words": executeEatWords
+  "execute_eat_words": executeEatWords,
+  "execute_adulterate_words": executeAdulterateWords
 
 }
 
