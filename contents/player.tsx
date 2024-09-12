@@ -55,7 +55,12 @@ const Player = () => {
     }
 
     function executeAdulterateWords() {
-      console.log('words adulterated')
+      const titleArray = title.split(" ")
+      let adulteredArray = titleArray.map((item) => {
+        return Array.from(item).sort().join("")
+      })
+      let newTitleString = adulteredArray.join(" ")
+      document.querySelector('h1').innerText = newTitleString
     }
 
 useEffect(() => {
