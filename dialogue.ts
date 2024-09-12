@@ -22,5 +22,5 @@ export const dialogue = [
     { label: "adulterate_yes", message: "Good.", next: "adulterate_yes_1", action: {function: "execute_adulterate_words", delay: 1000}},
     { label: "adulterate_yes_1", message: "An improvement.", next: "adulterate_end"},
     { label: "adulterate_no", message: "Very well, very well, leave it be.", next: "adulterate_end"},
-    { label: "adulterate_end", message: "What's that?"}
+    { label: "adulterate_end", message: "What's that?", action: {function: "execute_zenith", delay: 1000}}
   ]

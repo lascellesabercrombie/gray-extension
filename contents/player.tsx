@@ -4,6 +4,7 @@ import './player.css'
 import type { PlasmoCSConfig } from "plasmo"
 import { dialogue } from "~dialogue"
 import playerAvatar from "data-base64:~assets/janine_1982_vitruvian.png"
+import sun from "data-base64:~assets/gray-sun.png"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -28,6 +29,7 @@ const Player = () => {
     const [isNextDisabled, setIsNextDisabled] = useState(false)
     const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
     const [isAnswerChoice, setIsAnswerChoice] = useState(false)
+    const [isSunVisible, setIsSunVisible] = useState(false)
       
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
@@ -63,6 +65,10 @@ const Player = () => {
       document.querySelector('h1').innerText = newTitleString
     }
 
+    function executeZenith() {
+      setIsSunVisible(true)
+    }
+
 useEffect(() => {
   if (document?.querySelector('h1')) {
     setTitle(document?.querySelector('h1').innerText)
@@ -74,8 +80,8 @@ const functions = {
   "execute_say_words": executeSayWords,
   "execute_say_words_2": executeSayWords2,
   "execute_eat_words": executeEatWords,
-  "execute_adulterate_words": executeAdulterateWords
-
+  "execute_adulterate_words": executeAdulterateWords,
+  "execute_zenith": executeZenith
 }
 
 
@@ -118,6 +124,14 @@ async function proceedDialogue(index?: number) {
   }
 
   return (
+    <div>
+      {isSunVisible && <img src={sun} 
+      alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
+      style={{
+        position: 'absolute',
+        padding: 12,
+      }}
+      ></img>}
     <div
       id="player-area"
       style={{
@@ -165,7 +179,7 @@ async function proceedDialogue(index?: number) {
         </div>
         
     </div>
-
+    </div>
   )
 }
 
