@@ -5,6 +5,8 @@ import type { PlasmoCSConfig } from "plasmo"
 import { dialogue } from "~dialogue"
 import playerAvatar from "data-base64:~assets/janine_1982_vitruvian.png"
 import sun from "data-base64:~assets/gray-sun.png"
+import { useMessage} from "@plasmohq/messaging/hook"
+import type { RequestBody } from "~background/messages/start"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -31,6 +33,14 @@ const Player = () => {
     const [isAnswerChoice, setIsAnswerChoice] = useState(false)
     const [isSunVisible, setIsSunVisible] = useState(false)
       
+
+    const [showPlayer, setShowPlayer] = useState(false)
+    const useShowPlayer = useMessage<RequestBody, string>(async (req, res) => {
+      if (req.body.showPlayer === true) {
+        setShowPlayer(true)
+      }
+      })
+
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
     }
@@ -124,8 +134,10 @@ async function proceedDialogue(index?: number) {
   }
 
   return (
-    <div>
-      {isSunVisible && <img src={sun} 
+    <>
+    {showPlayer &&
+    <>
+    {isSunVisible && <img src={sun} 
       alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
       style={{
         position: 'absolute',
@@ -179,7 +191,10 @@ async function proceedDialogue(index?: number) {
         </div>
         
     </div>
-    </div>
+    </>
+}
+    </>
+
   )
 }
 
