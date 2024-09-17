@@ -35,12 +35,11 @@ const Player = () => {
       
 
     const [showPlayer, setShowPlayer] = useState(false)
-    const useShowPlayer = useMessage<RequestBody, string>(async (req, res) => {
+    const data = useMessage<RequestBody, string>(async (req, res) => {
       if (req.body.showPlayer === true) {
         setShowPlayer(true)
       }
       })
-
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
     }
