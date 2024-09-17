@@ -32,7 +32,8 @@ const Player = () => {
     const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
     const [isAnswerChoice, setIsAnswerChoice] = useState(false)
     const [isSunVisible, setIsSunVisible] = useState(false)
-      
+    const [isSunSpeechBubbleVisible, setIsSunSpeechBubbleVisible] = useState(false)
+    const [sunSpeechBubbleContents, setSunSpeechBubbleContents] = useState("")
 
     const [showPlayer, setShowPlayer] = useState(false)
     const data = useMessage<RequestBody, string>(async (req, res) => {
@@ -105,8 +106,16 @@ async function proceedDialogue(index?: number) {
     return
   }
   let currentStep = dialogue[index || dialogueOptionIndex];
-    if (currentStep.message) {
+    if (currentStep.message && !currentStep.speaker) {
+      if (isSunSpeechBubbleVisible) {
+        setSunSpeechBubbleContents("...")
+      }
       setSpeechBubbleContents(currentStep.message);
+    }
+    if (currentStep.message && currentStep.speaker === 'sun') {
+      setSpeechBubbleContents("...")
+      setIsSunSpeechBubbleVisible(true);
+      setSunSpeechBubbleContents(currentStep.message)
     }
     if (currentStep.action) {
       setIsNextDisabled(true)
@@ -136,13 +145,21 @@ async function proceedDialogue(index?: number) {
     <>
     {showPlayer &&
     <>
-    {isSunVisible && <img src={sun} 
-      alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
-      style={{
+    {isSunVisible && <div style={{
         position: 'absolute',
         padding: 12,
-      }}
-      ></img>}
+        backgroundColor: 'red',
+        display: 'flex',
+        alignItems: 'center'
+      }}>
+        <img src={sun} 
+      alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
+      ></img>
+      {isSunSpeechBubbleVisible && <div>
+        <span>{sunSpeechBubbleContents}</span>
+        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun") && !isAnswerChoice && <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
+        </div>}
+      </div>}
     <div
       id="player-area"
       style={{
@@ -163,11 +180,12 @@ async function proceedDialogue(index?: number) {
         {isSpeechBubbleVisible && 
         <div>
           <span>{speechBubbleContents}</span>
-          {isAnswerChoice ? 
+          {isAnswerChoice && 
           <div>
-            <button onClick={() => handleBinaryChoice(1)}>Yes</button>
-            <button onClick={() => handleBinaryChoice(0)}>No</button>
-          </div> :
+            <button onClick={() => handleBinaryChoice(1)}>{dialogue[dialogueOptionIndex]["answers"][1]["message"]}</button>
+            <button onClick={() => handleBinaryChoice(0)}>{dialogue[dialogueOptionIndex]["answers"][0]["message"]}</button>
+          </div>}
+          {!isAnswerChoice && (!sunSpeechBubbleContents || sunSpeechBubbleContents === "...") &&
           <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
           </div>
           }
