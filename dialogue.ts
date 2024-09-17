@@ -22,5 +22,23 @@ export const dialogue = [
     { label: "adulterate_yes", message: "Good.", next: "adulterate_yes_1", action: {function: "execute_adulterate_words", delay: 1000}},
     { label: "adulterate_yes_1", message: "An improvement.", next: "adulterate_end"},
     { label: "adulterate_no", message: "Very well, very well, leave it be.", next: "adulterate_end"},
-    { label: "adulterate_end", message: "What's that?", action: {function: "execute_zenith", delay: 1000}}
+    { label: "adulterate_end", message: "What's that?", action: {function: "execute_zenith", delay: 1000}},
+    { speaker: "sun", message: "Hello, toad.", answers: [
+            {message: "Pride", next: "toad_no"}, {message: "Humility", next: "toad_yes"}
+        ]},
+    {label: "toad_no", message: "Toad? Blethers!", next: "toad_no_1"},
+    {label: "toad_no_1", message: "I'm no toad. I am a human being, amphibian only in being composed of heaven and earth... ", next: "toad_no_2"},
+    {label: "toad_no_2", message: "My heart rises beyond any material sun. My calloused hands knead the wordly dough.", next: "toad_no_3"},
+    {label: "toad_no_3", message: "We work towards a better future tirelessly, in which all prosper and all are at peace.", next: "toad_no_4"},
+    {speaker: "sun", label: "toad_no_4", message: "No, you are a toad.", next: "toad_no_5"},
+    {speaker: "sun", label: "toad_no_5", message: "Nothing wrong with that.", next: "toad_no_6"},
+    {speaker: "sun", label: "toad_no_6", message: "Bred out of the mud by my beneficient rays.", next: "toad_no_7"},
+    {speaker: "sun", label: "toad_no_7", message: "Perhaps you have not recognised me?", next: "toad_end"},
+    {label: "toad_yes", message: "Yes, Toad. That's me. And you are?", next: "toad_end"},
+    {speaker: "sun", label: "toad_end", message: "I am the Sun."},
+    {speaker: "sun", message: "Beacon of enlightenment... "},
+    {speaker: "sun", message: "...or the spiritually blind dissecting eye..."},
+    {speaker: "sun", message: "I leave you to decide"},
+    {speaker: "sun", message: "It doesn't matter to me..."},
+    {speaker: "sun", message: "...you should be grateful to see me in any case."},
   ]
