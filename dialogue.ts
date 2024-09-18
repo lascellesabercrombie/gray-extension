@@ -44,11 +44,11 @@ export const dialogue = [
         {message: "Beacon", next: "beacon_yes"}, {message: "Eye", next: "beacon_no"}
     ]},
     {label: "beacon_yes", message: "You are the symbol of our bright future!", next: "beacon_end"},
-    {label: "beacon_yes", message: "You are the symbol of our threatened ruin!", next: "beacon_no_1"},
-    {label: "beacon_yes", message: "Not the promise of a new dawn...", next: "beacon_no_2"},
-    {label: "beacon_yes", message: "...but the rising flames.", next: "beacon_end"},
+    {label: "beacon_no", message: "You are the symbol of our threatened ruin!", next: "beacon_no_1"},
+    {label: "beacon_no_1", message: "Not the promise of a new dawn...", next: "beacon_no_2"},
+    {label: "beacon_no_2", message: "...but the rising flames.", next: "beacon_end"},
     {label: "beacon_end", speaker: "sun", message: "As I just said..."},
     {speaker: "sun", message: "...I don't care."},
-    {speaker: "sun", message: "You are a mayfly..."},
-    {speaker: "sun", message: "...and your time is up."},
+    {speaker: "sun", message: "And, more to the purpose, toad..."},
+    {speaker: "sun", message: "...your time is up.", action: {function: "execute_stage_2", delay: 1000}},
   ]
