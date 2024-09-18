@@ -4,9 +4,9 @@ import './player.css'
 import type { PlasmoCSConfig } from "plasmo"
 import { dialogue } from "~dialogue"
 import playerAvatar from "data-base64:~assets/janine_1982_vitruvian.png"
-import sun from "data-base64:~assets/gray-sun.png"
 import { useMessage} from "@plasmohq/messaging/hook"
 import type { RequestBody } from "~background/messages/start"
+import { Sun } from "./sun"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -145,21 +145,17 @@ async function proceedDialogue(index?: number) {
     <>
     {showPlayer &&
     <>
-    {isSunVisible && <div style={{
-        position: 'absolute',
-        padding: 12,
-        backgroundColor: 'red',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        <img src={sun} 
-      alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
-      ></img>
-      {isSunSpeechBubbleVisible && <div>
-        <span>{sunSpeechBubbleContents}</span>
-        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun") && !isAnswerChoice && <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
-        </div>}
-      </div>}
+  
+    {isSunVisible && 
+    <Sun
+    dialogueOptionIndex={dialogueOptionIndex} 
+    isAnswerChoice={isAnswerChoice}
+    isNextDisabled={isNextDisabled}
+    isSunSpeechBubbleVisible={isSunSpeechBubbleVisible}
+    proceedDialogue={proceedDialogue}
+    sunSpeechBubbleContents={sunSpeechBubbleContents}
+    />
+    }
     <div
       id="player-area"
       style={{
