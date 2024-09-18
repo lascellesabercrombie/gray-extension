@@ -1,6 +1,6 @@
 export const dialogue = [
     { message: "Now, where am I?"}, 
-    { message: "Ahh, I see...", concatenate: "title"},
+    { message: "Ahh, I see..."},
     { message: "...some sort of purgatory."},
     { message: "Not without its charms, but cold, icy cold."},
     { message: "Look, the sun is rising", action: {function: "execute_sunrise", delay: 1000}},
@@ -37,8 +37,18 @@ export const dialogue = [
     {label: "toad_yes", message: "Yes, Toad. That's me. And you are?", next: "toad_end"},
     {speaker: "sun", label: "toad_end", message: "I am the Sun."},
     {speaker: "sun", message: "Beacon of enlightenment... "},
-    {speaker: "sun", message: "...or the spiritually blind dissecting eye..."},
-    {speaker: "sun", message: "I leave you to decide"},
+    {speaker: "sun", message: "...or the murderous, dissecting eye..."},
+    {speaker: "sun", message: "...I leave you to decide."},
     {speaker: "sun", message: "It doesn't matter to me..."},
-    {speaker: "sun", message: "...you should be grateful to see me in any case."},
+    {speaker: "sun", message: "...you should be grateful to see me in any case.", answers: [
+        {message: "Beacon", next: "beacon_yes"}, {message: "Eye", next: "beacon_no"}
+    ]},
+    {label: "beacon_yes", message: "You are the symbol of our bright future!", next: "beacon_end"},
+    {label: "beacon_yes", message: "You are the symbol of our threatened ruin!", next: "beacon_no_1"},
+    {label: "beacon_yes", message: "Not the promise of a new dawn...", next: "beacon_no_2"},
+    {label: "beacon_yes", message: "...but the rising flames.", next: "beacon_end"},
+    {label: "beacon_end", speaker: "sun", message: "As I just said..."},
+    {speaker: "sun", message: "...I don't care."},
+    {speaker: "sun", message: "You are a mayfly..."},
+    {speaker: "sun", message: "...and your time is up."},
   ]
