@@ -1,8 +1,11 @@
 #player-area {
-    width: 500px;
-    background: red;
-    color: white;
-    position: fixed;
+  background: red;
+  color: white;
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
+  position: fixed;
+  width: 500px;  
   }
 
   #player {

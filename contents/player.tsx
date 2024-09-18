@@ -163,8 +163,6 @@ async function proceedDialogue(index?: number) {
     <div
       id="player-area"
       style={{
-        display: 'flex',
-        padding: 12,
         right,
         bottom: bottom
       }}
