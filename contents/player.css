@@ -19,3 +19,28 @@
     justify-content: center; 
     width: 100vw; 
   }
+
+  #modal {
+    align-items: center;
+    background-color: #faebd7;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 1vh;
+    justify-content: center;
+  }
+
+  .highlight-modal {
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  #sun {
+    position: absolute;
+    padding: 12px;
+    background-color: red;
+    display: flex;
+    top: 1vw;
+    left: 1vw;
+  }
