@@ -1,3 +1,21 @@
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% { 
+    transform: translateX(0%); 
+  }
+}
+
+@keyframes sunrise {
+  0% {
+    transform: translateY(100vw);
+  }
+  100% { 
+    transform: translateY(0%); 
+  }
+}
+
 #player-area {
   background: red;
   color: white;
@@ -6,7 +24,10 @@
   padding: 12px;
   position: fixed;
   width: 500px;  
+  animation: ease-in 2s slide-in;
   }
+
+ 
 
   #player {
     width: 100px;
@@ -48,4 +69,5 @@
     display: flex;
     top: 1vw;
     left: 1vw;
+    animation: ease-in 3s sunrise;
   }
