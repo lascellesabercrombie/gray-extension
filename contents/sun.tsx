@@ -1,16 +1,11 @@
 import { dialogue } from "~dialogue"
 import gray_sun from "data-base64:~assets/gray-sun.png"
+import './player.css'
 
 export function Sun({dialogueOptionIndex, isAnswerChoice, isNextDisabled, isSunSpeechBubbleVisible, proceedDialogue, sunSpeechBubbleContents}) {
     
     return (
-    <div style={{
-        position: 'absolute',
-        padding: 12,
-        backgroundColor: 'red',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
+    <div id="sun">
         <img src={gray_sun} 
       alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
       ></img>
