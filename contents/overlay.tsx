@@ -153,7 +153,7 @@ async function proceedDialogue(index?: number) {
   return (
     <>
     {showPlayer &&
-    <>
+    <div id="custom-overlay">
   
     {isSunVisible && 
     <Sun
@@ -178,7 +178,7 @@ async function proceedDialogue(index?: number) {
     handleSpeak={handleSpeak}
     proceedDialogue={proceedDialogue}
     />
-    </>
+    </div>
 }
     </>
 
