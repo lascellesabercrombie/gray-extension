@@ -80,12 +80,22 @@ const Overlay = () => {
       setIsSunVisible(true)
     }
 
+    function executeStage2() {
+      setModalTitleContents("Stage 2")
+      setModalPararaphContents("Dodge the rays of the sun.")
+      setIsModalOpen(true)
+    }
+
     function handleSpeak() {
-        if (!isSpeechBubbleVisible) {
+      if (!isSpeechBubbleVisible) {
          proceedDialogue()
-       }
-   setIsMenuVisible(!isMenuVisible)
-   setIsSpeechBubbleVisible(!isSpeechBubbleVisible)      
+      }
+      setIsMenuVisible(!isMenuVisible)
+      setIsSpeechBubbleVisible(!isSpeechBubbleVisible)      
+    }
+
+    function handleToggleModal() {
+      setIsModalOpen(!isModalOpen)
     }
 useEffect(() => {
   if (document?.querySelector('h1')) {
@@ -99,7 +109,8 @@ const functions = {
   "execute_say_words_2": executeSayWords2,
   "execute_eat_words": executeEatWords,
   "execute_adulterate_words": executeAdulterateWords,
-  "execute_zenith": executeZenith
+  "execute_zenith": executeZenith,
+  "execute_stage_2": executeStage2
 }
 
 
@@ -157,7 +168,7 @@ async function proceedDialogue(index?: number) {
   return (
     <>
     {showPlayer &&
-    <div id="custom-overlay">
+    <div id="custom-overlay" className={isModalOpen ? "highlight-modal" : ""}>
   
     {isSunVisible && 
     <Sun
@@ -171,7 +182,9 @@ async function proceedDialogue(index?: number) {
     }
     {isModalOpen && <Modal
     modalTitleContents={modalTitleContents}
-    modalParagraphContents={modalParagraphContents}/>}
+    modalParagraphContents={modalParagraphContents}
+    handleToggleModal={handleToggleModal}
+    />}
     <Player
     dialogueOptionIndex={dialogueOptionIndex} 
     isAnswerChoice={isAnswerChoice}
