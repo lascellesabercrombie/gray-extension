@@ -23,13 +23,18 @@
   #modal {
     align-items: center;
     background-color: #faebd7;
+    border: 0.4rem double black;
     display: flex;
     flex-direction: column;
-    padding-bottom: 1vh;
+    padding-bottom: 2vh;
     padding-left: 5vw;
     padding-right: 5vw;
-    padding-top: 1vh;
+    padding-top: 2vh;
     justify-content: center;
+
+    > h1 {
+      text-transform: uppercase;
+    }
   }
 
   .highlight-modal {
