@@ -5,7 +5,8 @@ import { dialogue } from "~dialogue"
 import { useMessage} from "@plasmohq/messaging/hook"
 import type { RequestBody } from "~background/messages/start"
 import { Sun } from "./sun"
-import {Player} from "./player"
+import { Player } from "./player"
+import { Modal } from "./modal"
 
 export const config: PlasmoCSConfig = {
   matches: ["<all_urls>"],
@@ -31,6 +32,9 @@ const Overlay = () => {
     const [isSunVisible, setIsSunVisible] = useState(false)
     const [isSunSpeechBubbleVisible, setIsSunSpeechBubbleVisible] = useState(false)
     const [sunSpeechBubbleContents, setSunSpeechBubbleContents] = useState("")
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [modalTitleContents, setModalTitleContents] = useState("")
+    const [modalParagraphContents, setModalPararaphContents] = useState("")
 
     const [showPlayer, setShowPlayer] = useState(false)
     const data = useMessage<RequestBody, string>(async (req, res) => {
@@ -165,6 +169,9 @@ async function proceedDialogue(index?: number) {
     proceedDialogue={proceedDialogue}
     />
     }
+    {isModalOpen && <Modal
+    modalTitleContents={modalTitleContents}
+    modalParagraphContents={modalParagraphContents}/>}
     <Player
     dialogueOptionIndex={dialogueOptionIndex} 
     isAnswerChoice={isAnswerChoice}
