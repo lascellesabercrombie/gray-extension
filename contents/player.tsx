@@ -4,8 +4,8 @@ import { dialogue } from "~dialogue";
 import './player.css'
 
 export function Player ({dialogueOptionIndex, handleBinaryChoice, handleShowMenu, handleSpeak, isAnswerChoice, isMenuVisible, isNextDisabled, isSpeechBubbleVisible, speechBubbleContents, sunSpeechBubbleContents, proceedDialogue}) {
-    const [right, setRight] = useState(10)
-    const [bottom, setBottom] = useState(10)
+    const [right, setRight] = useState(1)
+    const [bottom, setBottom] = useState(1)
     const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
 
     return (
