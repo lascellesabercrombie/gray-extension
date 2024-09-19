@@ -12,8 +12,8 @@ export function Player ({dialogueOptionIndex, handleBinaryChoice, handleShowMenu
         <div
       id="player-area"
       style={{
-        right,
-        bottom: bottom
+        right:`${right}vw`,
+        bottom:`${bottom}vh`
       }}
       >
         {isMenuVisible && <div>
@@ -34,15 +34,15 @@ export function Player ({dialogueOptionIndex, handleBinaryChoice, handleShowMenu
         display: 'flex',
         flexDirection: 'column'
         }}>
-         <button onClick={() => {setBottom(bottom + 10)}}>Up</button>
+         <button onClick={() => {setBottom(bottom > 75 ? bottom : bottom + 1)}}>Up</button>
          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <button onClick={() => {setRight(right + 10); setIsPlayerFacingLeft(true)}}>Left</button>
+        <button onClick={() => {setRight(right > 75 ? right : right + 1); setIsPlayerFacingLeft(true)}}>Left</button>
           <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
           style={{transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''}}></img>
         <button onClick={handleShowMenu}>See menu</button>
-        <button onClick={() => {setRight(right - 10); setIsPlayerFacingLeft(false)}}>Right</button>
+        <button onClick={() => {setRight(right < 1 ? right : right - 1); setIsPlayerFacingLeft(false)}}>Right</button>
         </div>
-        <button onClick={() => {setBottom(bottom - 10)}}>Down</button>
+        <button onClick={() => {setBottom(bottom < 1 ? bottom : bottom - 1)}}>Down</button>
         </div>
         
     </div>
