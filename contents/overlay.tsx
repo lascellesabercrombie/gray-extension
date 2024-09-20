@@ -35,6 +35,34 @@ const Overlay = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalTitleContents, setModalTitleContents] = useState("")
     const [modalParagraphContents, setModalPararaphContents] = useState("")
+    const [stage, setStage] = useState(0)
+    const [isRay1Visible, setIsRay1Visible] = useState(false)
+    const [right, setRight] = useState(1)
+    const [bottom, setBottom] = useState(1)
+    const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
+
+
+
+  function handleMove(direction) {
+    switch(direction) {
+      case "left":
+        setRight(right > 75 ? right : right + 1);
+        setIsPlayerFacingLeft(true)
+        break;
+      case "right": 
+        setRight(right < 1 ? right : right - 1); 
+        setIsPlayerFacingLeft(false)
+        break;
+      case "up":
+        setBottom(bottom > 75 ? bottom : bottom + 1);
+        break;
+      case "down":
+        setBottom(bottom < 1 ? bottom : bottom - 1);
+        break;
+      default:
+      break; 
+    }
+  }
 
     const [showPlayer, setShowPlayer] = useState(false)
     const data = useMessage<RequestBody, string>(async (req, res) => {
@@ -81,6 +109,7 @@ const Overlay = () => {
     }
 
     function executeStage2() {
+      setStage(2)
       setModalTitleContents("Stage 2")
       setModalPararaphContents("Dodge the rays of the sun.")
       setIsModalOpen(true)
@@ -97,21 +126,22 @@ const Overlay = () => {
     function handleToggleModal() {
       setIsModalOpen(!isModalOpen)
     }
-useEffect(() => {
-  if (document?.querySelector('h1')) {
-    setTitle(document?.querySelector('h1').innerText)
-  }
-}, [document?.querySelector('h1')])
 
-const functions = {
-  "execute_sunrise": executeSunrise,
-  "execute_say_words": executeSayWords,
-  "execute_say_words_2": executeSayWords2,
-  "execute_eat_words": executeEatWords,
-  "execute_adulterate_words": executeAdulterateWords,
-  "execute_zenith": executeZenith,
-  "execute_stage_2": executeStage2
-}
+    useEffect(() => {
+      if (document?.querySelector('h1')) {
+        setTitle(document?.querySelector('h1').innerText)
+      }
+    }, [document?.querySelector('h1')])
+
+    const functions = {
+      "execute_sunrise": executeSunrise,
+      "execute_say_words": executeSayWords,
+      "execute_say_words_2": executeSayWords2,
+      "execute_eat_words": executeEatWords,
+      "execute_adulterate_words": executeAdulterateWords,
+      "execute_zenith": executeZenith,
+      "execute_stage_2": executeStage2
+    }
 
 
 function handleBinaryChoice(choice: 0 | 1) {
@@ -190,12 +220,16 @@ async function proceedDialogue(index?: number) {
     isAnswerChoice={isAnswerChoice}
     isMenuVisible={isMenuVisible}
     isNextDisabled={isNextDisabled} 
+    isPlayerFacingLeft={isPlayerFacingLeft}
     isSpeechBubbleVisible={isSpeechBubbleVisible}
+    bottom={bottom}
+    right={right}
     speechBubbleContents={speechBubbleContents}
     sunSpeechBubbleContents={sunSpeechBubbleContents}
     handleBinaryChoice={handleBinaryChoice}
     handleShowMenu={handleShowMenu} 
     handleSpeak={handleSpeak}
+    handleMove={handleMove}
     proceedDialogue={proceedDialogue}
     />
     </div>

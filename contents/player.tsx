@@ -1,12 +1,24 @@
-import { useState } from "react";
 import playerAvatar from "data-base64:~assets/janine_1982_vitruvian.png"
 import { dialogue } from "~dialogue";
 import './player.css'
 
-export function Player ({dialogueOptionIndex, handleBinaryChoice, handleShowMenu, handleSpeak, isAnswerChoice, isMenuVisible, isNextDisabled, isSpeechBubbleVisible, speechBubbleContents, sunSpeechBubbleContents, proceedDialogue}) {
-    const [right, setRight] = useState(1)
-    const [bottom, setBottom] = useState(1)
-    const [isPlayerFacingLeft, setIsPlayerFacingLeft] = useState(true)
+export function Player ({
+  bottom, 
+  right, 
+  dialogueOptionIndex, 
+  isPlayerFacingLeft, 
+  handleBinaryChoice, 
+  handleMove, 
+  handleShowMenu, 
+  handleSpeak, 
+  isAnswerChoice, 
+  isMenuVisible, 
+  isNextDisabled, 
+  isSpeechBubbleVisible, 
+  speechBubbleContents, 
+  sunSpeechBubbleContents, 
+  proceedDialogue
+}) {
 
     return (
         <div
@@ -34,15 +46,15 @@ export function Player ({dialogueOptionIndex, handleBinaryChoice, handleShowMenu
         display: 'flex',
         flexDirection: 'column'
         }}>
-         <button onClick={() => {setBottom(bottom > 75 ? bottom : bottom + 1)}}>Up</button>
+         <button onClick={() => handleMove("up")}>Up</button>
          <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <button onClick={() => {setRight(right > 75 ? right : right + 1); setIsPlayerFacingLeft(true)}}>Left</button>
+        <button onClick={() => handleMove("left")}>Left</button>
           <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
           style={{transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''}}></img>
         <button onClick={handleShowMenu}>See menu</button>
-        <button onClick={() => {setRight(right < 1 ? right : right - 1); setIsPlayerFacingLeft(false)}}>Right</button>
+        <button onClick={() => handleMove("right")}>Right</button>
         </div>
-        <button onClick={() => {setBottom(bottom < 1 ? bottom : bottom - 1)}}>Down</button>
+        <button onClick={() => handleMove("down")}>Down</button>
         </div>
         
     </div>
