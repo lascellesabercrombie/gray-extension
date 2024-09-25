@@ -190,12 +190,14 @@ const Overlay = () => {
     }
 
     function executeAdulterateWords() {
+      if (title) {
         const titleArray = title.split(" ")
         let adulteredArray = titleArray.map((item) => {
           return Array.from(item).sort().join("")
         })
         let newTitleString = adulteredArray.join(" ")
         document.querySelector('h1').innerText = newTitleString
+      }
     }
 
     function executeZenith() {
