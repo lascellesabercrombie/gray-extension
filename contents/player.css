@@ -20,6 +20,7 @@
   background: red;
   color: white;
   display: flex;
+  gap: 15px;
   justify-content: flex-end;
   padding: 12px;
   position: fixed;
@@ -62,11 +63,45 @@
     background-color: rgba(0,0,0,0.5);
   }
 
+  .speech-bubble {
+    background-color: white;
+    border: .4rem double #000;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px;
+    display: flex;
+    color: black;
+    font-size: 20px;
+    flex-direction: column;
+    max-height: fit-content;
+    max-width: 15vw;
+    gap: 25px;
+  }
+  .speech-bubble-button {
+    display: flex;
+    font-family: ui-monospace;
+    font-size: medium;
+    text-transform: uppercase;
+    background-color: cornsilk;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 5px;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    &:focus {
+      outline: thick double #32a1ce;
+    }
+  }
+  .button-container {
+    display: flex;
+    gap: 20px;
+  }
   #sun {
     position: absolute;
     padding: 12px;
     background-color: red;
     display: flex;
+    gap: 15px;
     top: 1vw;
     left: 1vw;
     animation: ease-in 3s sunrise;

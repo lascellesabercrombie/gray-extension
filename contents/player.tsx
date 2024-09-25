@@ -31,15 +31,15 @@ export function Player ({
         {isMenuVisible && <div>
           <button onClick={handleSpeak}>Speak</button></div>}
         {isSpeechBubbleVisible && 
-        <div>
+        <div className="speech-bubble">
           <span>{speechBubbleContents}</span>
           {isAnswerChoice && 
-          <div>
-            <button onClick={() => handleBinaryChoice(1)}>{dialogue[dialogueOptionIndex]["answers"][1]["message"]}</button>
-            <button onClick={() => handleBinaryChoice(0)}>{dialogue[dialogueOptionIndex]["answers"][0]["message"]}</button>
+          <div className="button-container">
+            <button className="speech-bubble-button" onClick={() => handleBinaryChoice(1)}>{dialogue[dialogueOptionIndex]["answers"][1]["message"]}</button>
+            <button className="speech-bubble-button" onClick={() => handleBinaryChoice(0)}>{dialogue[dialogueOptionIndex]["answers"][0]["message"]}</button>
           </div>}
           {!isAnswerChoice && (!sunSpeechBubbleContents || sunSpeechBubbleContents === "...") &&
-          <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
+          <button className="speech-bubble-button" disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
           </div>
           }
         <div   style={{

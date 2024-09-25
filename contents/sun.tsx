@@ -9,9 +9,11 @@ export function Sun({dialogueOptionIndex, isAnswerChoice, isNextDisabled, isSunS
         <img src={gray_sun} 
       alt="a sun with a face, leering and suspect; section of an image from a draft manuscript of Gray's novel Lanark"
       ></img>
-      {isSunSpeechBubbleVisible && <div>
+      {isSunSpeechBubbleVisible && 
+        <div className="speech-bubble">
         <span>{sunSpeechBubbleContents}</span>
-        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun") && !isAnswerChoice && <button disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
+        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun") && !isAnswerChoice && 
+        <button className="speech-bubble-button" disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
         </div>}
     </div>)
 }
