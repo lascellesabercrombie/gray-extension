@@ -5,7 +5,7 @@ export function Modal ({handleToggleModal, modalTitleContents, modalParagraphCon
         <div id="modal">
             <h1>{modalTitleContents}</h1>
             <p>{modalParagraphContents}</p>
-            <button onClick={handleToggleModal}>Very well</button>
+            <button className="speech-bubble-button" onClick={handleToggleModal}>Understood</button>
         </div>
     )
 }
