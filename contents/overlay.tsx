@@ -78,6 +78,9 @@ const Overlay = () => {
 
 
   useEffect(() => {
+    if (stage === 1 && !isModalOpen) {
+      setShowPlayer(true)
+    }
     if (stage === 2 && !isModalOpen) {
       setIsRay1Visible(true);
       let frameId;
@@ -151,9 +154,13 @@ const Overlay = () => {
     
     const data = useMessage<RequestBody, string>(async (req, res) => {
       if (req.body.showPlayer === true) {
-        setShowPlayer(true)
+        setStage(1)
+        setModalTitleContents("Stage 1")
+        setModalPararaphContents("Move around with buttons or select speak from menu.")
+        setIsModalOpen(true)
       }
       })
+
     function executeSunrise() {
       document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
     }
@@ -281,7 +288,7 @@ async function proceedDialogue(index?: number) {
 
   return (
     <>
-    {showPlayer &&
+
     <div id="custom-overlay" className={isModalOpen ? "highlight-modal" : ""}>
   
     {isSunVisible &&
@@ -311,6 +318,7 @@ maxHeight: '100%'}} ></img>
     modalParagraphContents={modalParagraphContents}
     handleToggleModal={handleToggleModal}
     />}
+    {showPlayer &&
     <Player
     dialogueOptionIndex={dialogueOptionIndex} 
     isAnswerChoice={isAnswerChoice}
@@ -328,8 +336,9 @@ maxHeight: '100%'}} ></img>
     handleMove={handleMove}
     proceedDialogue={proceedDialogue}
     />
+  }
     </div>
-}
+
     </>
 
   )
