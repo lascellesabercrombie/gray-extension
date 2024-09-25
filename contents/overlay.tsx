@@ -46,6 +46,7 @@ const Overlay = () => {
     const [projRight, setProjRight] = useState(57)
     const [showPlayer, setShowPlayer] = useState(false)
     const [isVictory, setIsVictory] = useState(null)
+    const [isSunrise, setIsSunrise] = useState(false)
 
     const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
@@ -162,7 +163,7 @@ const Overlay = () => {
       })
 
     function executeSunrise() {
-      document.body.style.background =  "linear-gradient(to top, #FF512F, #F09819, #FFFFFF)"
+      setIsSunrise(true)
     }
 
     function executeSayWords() {
@@ -289,7 +290,7 @@ async function proceedDialogue(index?: number) {
   return (
     <>
 
-    <div id="custom-overlay" className={isModalOpen ? "highlight-modal" : ""}>
+    <div id="custom-overlay" className={isModalOpen ? "highlight-modal" : isSunrise ? "sunrise-colors" : ""}>
   
     {isSunVisible &&
     <Sun

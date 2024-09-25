@@ -17,7 +17,7 @@
 }
 
 #player-area {
-  background: red;
+  /* background: red; */
   color: white;
   display: flex;
   gap: 15px;
@@ -69,6 +69,10 @@
     background-color: rgba(0,0,0,0.5);
   }
 
+  .sunrise-colors {
+    background: linear-gradient(to top, rgba(255, 81, 47, 0.4), rgba(240, 152, 25, 0.4), rgba(255, 255, 255, 0.4));
+  }
+
   .speech-bubble {
     background-color: white;
     border: .4rem double #000;
@@ -105,7 +109,7 @@
   #sun {
     position: absolute;
     padding: 12px;
-    background-color: red;
+    /* background-color: red; */
     display: flex;
     gap: 15px;
     top: 1vw;
