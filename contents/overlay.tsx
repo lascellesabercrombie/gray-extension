@@ -47,6 +47,7 @@ const Overlay = () => {
     const [showPlayer, setShowPlayer] = useState(false)
     const [isVictory, setIsVictory] = useState(null)
     const [isSunrise, setIsSunrise] = useState(false)
+    const [isOverlayPresent, setIsOverlayPresent] = useState(false)
 
     const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
@@ -155,6 +156,7 @@ const Overlay = () => {
     
     const data = useMessage<RequestBody, string>(async (req, res) => {
       if (req.body.showPlayer === true) {
+        setIsOverlayPresent(true)
         setStage(1)
         setModalTitleContents("Stage 1")
         setModalPararaphContents("Move around with buttons or select speak from menu.")
@@ -188,12 +190,12 @@ const Overlay = () => {
     }
 
     function executeAdulterateWords() {
-      const titleArray = title.split(" ")
-      let adulteredArray = titleArray.map((item) => {
-        return Array.from(item).sort().join("")
-      })
-      let newTitleString = adulteredArray.join(" ")
-      document.querySelector('h1').innerText = newTitleString
+        const titleArray = title.split(" ")
+        let adulteredArray = titleArray.map((item) => {
+          return Array.from(item).sort().join("")
+        })
+        let newTitleString = adulteredArray.join(" ")
+        document.querySelector('h1').innerText = newTitleString
     }
 
     function executeZenith() {
@@ -289,7 +291,7 @@ async function proceedDialogue(index?: number) {
 
   return (
     <>
-
+{isOverlayPresent &&
     <div id="custom-overlay" className={isModalOpen ? "highlight-modal" : isSunrise ? "sunrise-colors" : ""}>
   
     {isSunVisible &&
@@ -339,7 +341,7 @@ maxHeight: '100%'}} ></img>
     />
   }
     </div>
-
+  }
     </>
 
   )
