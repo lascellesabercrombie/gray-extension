@@ -47,7 +47,7 @@ const Overlay = () => {
     const [showPlayer, setShowPlayer] = useState(false)
     const [isVictory, setIsVictory] = useState(null)
 
-    const playerRightRef = useRef(playerRight); // Use ref for playerRight
+    const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
     
     useEffect(() => {
@@ -60,7 +60,6 @@ const Overlay = () => {
       case "left":
         setPlayerRight(playerRight > 75 ? playerRight : playerRight + 1);
         setIsPlayerFacingLeft(true)
-        setStage(2)
         break;
       case "right": 
         setPlayerRight(playerRight < 1 ? playerRight : playerRight - 1); 
