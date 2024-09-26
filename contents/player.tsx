@@ -8,16 +8,15 @@ export function Player ({
   dialogueOptionIndex, 
   isPlayerFacingLeft, 
   handleBinaryChoice, 
-  handleMove, 
-  handleShowMenu, 
+  handleAction, 
   handleSpeak, 
   isAnswerChoice, 
-  isMenuVisible, 
   isNextDisabled, 
   isSpeechBubbleVisible, 
   speechBubbleContents, 
   sunSpeechBubbleContents, 
-  proceedDialogue
+  proceedDialogue,
+  tabIndex
 }) {
 
     return (
@@ -27,10 +26,11 @@ export function Player ({
         right:`${right}vw`,
         bottom:`${bottom}vh`
       }}
+      tabIndex={tabIndex}
+      onKeyDown={(e) => {handleAction(e.key)}}
       >
-        {isMenuVisible && <div>
-          <button onClick={handleSpeak}>Speak</button></div>}
-        {isSpeechBubbleVisible && 
+          
+        {isSpeechBubbleVisible ?
         <div className="speech-bubble">
           <span>{speechBubbleContents}</span>
           {isAnswerChoice && 
@@ -41,22 +41,11 @@ export function Player ({
           {!isAnswerChoice && (!sunSpeechBubbleContents || sunSpeechBubbleContents === "...") &&
           <button className="speech-bubble-button" disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
           </div>
+          : 
+          <button onClick={handleSpeak}>Speak</button>
           }
-        <div   style={{
-        display: 'flex',
-        flexDirection: 'column'
-        }}>
-         <button onClick={() => handleMove("up")}>Up</button>
-         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <button onClick={() => handleMove("left")}>Left</button>
           <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
           style={{transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''}}></img>
-        <button onClick={handleShowMenu}>See menu</button>
-        <button onClick={() => handleMove("right")}>Right</button>
-        </div>
-        <button onClick={() => handleMove("down")}>Down</button>
-        </div>
-        
     </div>
     )
 }

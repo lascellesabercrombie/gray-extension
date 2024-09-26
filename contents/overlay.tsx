@@ -48,6 +48,7 @@ const Overlay = () => {
     const [isVictory, setIsVictory] = useState(null)
     const [isSunrise, setIsSunrise] = useState(false)
     const [isOverlayPresent, setIsOverlayPresent] = useState(false)
+    const [playerTabIndex, setPlayerTabIndex] = useState(null)
 
     const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
@@ -57,22 +58,24 @@ const Overlay = () => {
       playerBottomRef.current = playerBottom;
     }, [playerRight, playerBottom]);
 
-  function handleMove(direction) {
+  function handleAction(direction) {
     switch(direction) {
-      case "left":
+      case "a":
         setPlayerRight(playerRight > 75 ? playerRight : playerRight + 1);
         setIsPlayerFacingLeft(true)
         break;
-      case "right": 
+      case "d":
         setPlayerRight(playerRight < 1 ? playerRight : playerRight - 1); 
         setIsPlayerFacingLeft(false)
         break;
-      case "up":
+      case "w":
         setPlayerBottom(playerBottom > 75 ? playerBottom : playerBottom + 1);
         break;
-      case "down":
+      case "s":
         setPlayerBottom(playerBottom < 1 ? playerBottom : playerBottom - 1);
         break;
+      case "j":
+        handleSpeak()
       default:
       break; 
     }
@@ -82,6 +85,7 @@ const Overlay = () => {
   useEffect(() => {
     if (stage === 1 && !isModalOpen) {
       setShowPlayer(true)
+      setPlayerTabIndex(0)
     }
     if (stage === 2 && !isModalOpen) {
       setIsRay1Visible(true);
@@ -327,7 +331,6 @@ maxHeight: '100%'}} ></img>
     <Player
     dialogueOptionIndex={dialogueOptionIndex} 
     isAnswerChoice={isAnswerChoice}
-    isMenuVisible={isMenuVisible}
     isNextDisabled={isNextDisabled} 
     isPlayerFacingLeft={isPlayerFacingLeft}
     isSpeechBubbleVisible={isSpeechBubbleVisible}
@@ -336,10 +339,10 @@ maxHeight: '100%'}} ></img>
     speechBubbleContents={speechBubbleContents}
     sunSpeechBubbleContents={sunSpeechBubbleContents}
     handleBinaryChoice={handleBinaryChoice}
-    handleShowMenu={handleShowMenu} 
     handleSpeak={handleSpeak}
-    handleMove={handleMove}
+    handleAction={handleAction}
     proceedDialogue={proceedDialogue}
+    tabIndex={playerTabIndex}
     />
   }
     </div>
