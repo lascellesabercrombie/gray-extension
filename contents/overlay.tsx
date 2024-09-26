@@ -25,7 +25,6 @@ const PLAYER_HEIGHT = 5
 const Overlay = () => {
    
     const [title, setTitle] = useState(null)
-    const [isMenuVisible, setIsMenuVisible] = useState(false)
     const [isSpeechBubbleVisible, setIsSpeechBubbleVisible] = useState(false)
     const [speechBubbleContents, setSpeechBubbleContents] = useState("")
     const [dialogueOptionIndex, setDialogueOptionIndex] = useState(0)
@@ -163,7 +162,7 @@ const Overlay = () => {
         setIsOverlayPresent(true)
         setStage(1)
         setModalTitleContents("Stage 1")
-        setModalPararaphContents("Move your player using WASD. To speak, click the button or press J.")
+        setModalPararaphContents("Click or tab to focus your player. Move using WASD. Speak by clicking the relevant button or by pressing J.")
         setIsModalOpen(true)
       }
       })
@@ -219,7 +218,6 @@ const Overlay = () => {
       if (!isSpeechBubbleVisible) {
          proceedDialogue()
       }
-      setIsMenuVisible(!isMenuVisible)
       setIsSpeechBubbleVisible(!isSpeechBubbleVisible)      
     }
 
@@ -248,11 +246,6 @@ function handleBinaryChoice(choice: 0 | 1) {
   let currentStep = dialogue[dialogueOptionIndex];
   setIsAnswerChoice(false)
   proceedDialogue(dialogue.findIndex((element) => element.label === currentStep.answers[choice].next))
-}
-
-function handleShowMenu() {
-    setIsMenuVisible(!isMenuVisible)
-    setIsSpeechBubbleVisible(false)
 }
 
 async function proceedDialogue(index?: number) {
