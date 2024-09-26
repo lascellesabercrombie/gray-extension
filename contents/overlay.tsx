@@ -163,7 +163,7 @@ const Overlay = () => {
         setIsOverlayPresent(true)
         setStage(1)
         setModalTitleContents("Stage 1")
-        setModalPararaphContents("Move around with buttons or select speak from menu.")
+        setModalPararaphContents("Move your player using WASD. To speak, click the button or press J.")
         setIsModalOpen(true)
       }
       })
