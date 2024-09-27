@@ -19,8 +19,8 @@ export const getStyle = () => {
   return style
 }
 
-const PLAYER_WIDTH = 5
-const PLAYER_HEIGHT = 5
+const PLAYER_WIDTH = 100
+const PLAYER_HEIGHT = 200
 
 const Overlay = () => {
    
@@ -115,8 +115,8 @@ const Overlay = () => {
         const currentPlayerRight = playerRightRef.current;
         const currentPlayerBottom = playerBottomRef.current;
   
-        const hasHitPlayer = (Math.abs(currentProjRight - currentPlayerRight) <= PLAYER_WIDTH &&
-                                  Math.abs(currentProjBottom - currentPlayerBottom) <= PLAYER_HEIGHT);
+        const hasHitPlayer = (Math.abs(currentProjRight - currentPlayerRight) <= (PLAYER_WIDTH/windowWidth) &&
+                                  Math.abs(currentProjBottom - currentPlayerBottom) <= (PLAYER_HEIGHT/windowHeight));
   
         const isOutOfBounds = (currentProjRight < 0 || currentProjRight > windowWidth || 
                                currentProjBottom < 0 || currentProjBottom > windowHeight);
@@ -347,6 +347,8 @@ maxHeight: '100%'}} ></img>
     handleAction={handleAction}
     proceedDialogue={proceedDialogue}
     tabIndex={playerTabIndex}
+    width={PLAYER_WIDTH}
+    height={PLAYER_HEIGHT}
     />
   }
     </div>

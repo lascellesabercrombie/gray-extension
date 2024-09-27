@@ -16,7 +16,9 @@ export function Player ({
   speechBubbleContents, 
   sunSpeechBubbleContents, 
   proceedDialogue,
-  tabIndex
+  tabIndex,
+  width,
+  height
 }) {
 
     return (
@@ -24,7 +26,7 @@ export function Player ({
       id="player-area"
       style={{
         right:`${right}vw`,
-        bottom:`${bottom}vh`
+        bottom:`${bottom}vh`,
       }}
       tabIndex={tabIndex}
       onKeyDown={(e) => {handleAction(e.key)}}
@@ -42,10 +44,15 @@ export function Player ({
           <button className="speech-bubble-button" disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
           </div>
           : 
-          <button onClick={handleSpeak}>Speak</button>
+          <button className="speech-bubble-button" onClick={handleSpeak}>Speak</button>
           }
           <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
-          style={{transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''}}></img>
+          style={{
+            width: `${width}px`,
+            height: `${height}px`,
+            transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''
+          }}>
+          </img>
     </div>
     )
 }
