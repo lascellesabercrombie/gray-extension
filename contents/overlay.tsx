@@ -48,6 +48,7 @@ const Overlay = () => {
     const [isSunrise, setIsSunrise] = useState(false)
     const [isOverlayPresent, setIsOverlayPresent] = useState(false)
     const [playerTabIndex, setPlayerTabIndex] = useState(null)
+    const [text, setText] = useState("")
 
     const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
@@ -172,14 +173,22 @@ const Overlay = () => {
     }
 
     function executeSayWords() {
-      setSpeechBubbleContents(title)
+        if (title && typeof title === 'string') {
+          setSpeechBubbleContents(title)
+        }
+      }
+    
+    function executeSayWords1() {
+      let text = document?.querySelector("h1")?.innerText || document?.querySelector("h2")?.innerText
+      setText(text)
+      setSpeechBubbleContents(text)
     }
 
     function executeSayWords2() {
-      const titleLength = title?.split(" ")?.length
-       if (!titleLength || titleLength < 1) {
+      const textLength = text?.split(" ")?.length
+       if (!textLength || textLength < 1) {
           setSpeechBubbleContents("Nothing? Oh well.")
-        } else if (titleLength === 1) {
+        } else if (textLength === 1) {
           setSpeechBubbleContents("It's terse at least.")
         } else {
           setSpeechBubbleContents("Verbose rubbish.")
@@ -187,19 +196,20 @@ const Overlay = () => {
     }
 
     function executeEatWords() {
-      if (document?.querySelector('h1')) {
-        document.querySelector('h1').innerText = ""
+      let textToEat = document?.querySelector("h1") || document?.querySelector("h2")
+      if (textToEat.innerText) {
+        textToEat.innerText = ""
       }
     }
 
     function executeAdulterateWords() {
-      if (title) {
-        const titleArray = title.split(" ")
-        let adulteredArray = titleArray.map((item) => {
+      if (text) {
+        const textArray = text.split(" ")
+        let adulteredArray = textArray.map((item) => {
           return Array.from(item).sort().join("")
         })
-        let newTitleString = adulteredArray.join(" ")
-        document.querySelector('h1').innerText = newTitleString
+        let newTextString = adulteredArray.join(" ")
+        document.querySelector('h1').innerText = newTextString
       }
     }
 
@@ -226,14 +236,15 @@ const Overlay = () => {
     }
 
     useEffect(() => {
-      if (document?.querySelector('h1')) {
-        setTitle(document?.querySelector('h1').innerText)
+      if (document.title) {
+        setTitle(document.title)
       }
-    }, [document?.querySelector('h1')])
+    }, [document?.title])
 
     const functions = {
       "execute_sunrise": executeSunrise,
       "execute_say_words": executeSayWords,
+      "execute_say_words_1": executeSayWords1,
       "execute_say_words_2": executeSayWords2,
       "execute_eat_words": executeEatWords,
       "execute_adulterate_words": executeAdulterateWords,

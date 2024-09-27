@@ -1,13 +1,13 @@
 export const dialogue = [
     { message: "Now, where am I?"}, 
-    { message: "Ahh, I see..."},
-    { message: "...some sort of purgatory."},
+    { message: "Ahh, I see...", action: {function: "execute_say_words", delay: 1000}},
+    { message: "...some sort of purgatory, I suppose."},
     { message: "Not without its charms, but cold, icy cold."},
     { message: "Look, the sun is rising", action: {function: "execute_sunrise", delay: 1000}},
-    { message: "Well, there are words, but are they worth saying?", answers: [
+    { message: "There are words here, but are they worth saying?", answers: [
         {message: "No", next: "say_end"}, {message: "Yes", next: "say_yes"}
     ]},
-    { label: "say_yes", message: "*clears throat*", next: "say_yes_1", action: {function: "execute_say_words", delay: 1000}},
+    { label: "say_yes", message: "*clears throat*", next: "say_yes_1", action: {function: "execute_say_words_1"}},
     {label: "say_yes_1", next: "say_end", action: {function: "execute_say_words_2"}},
     {label: "say_end", message: "So..."},
     {message: "Are they, perhaps, worth eating?", answers: [
