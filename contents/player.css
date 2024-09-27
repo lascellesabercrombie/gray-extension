@@ -26,12 +26,7 @@
   position: fixed;
   width: 500px;  
   animation: ease-in 2s slide-in;
-  }
 
- 
-
-  #player {
-    width: 100px;
   }
 
   #custom-overlay {
@@ -94,6 +89,7 @@
     text-transform: uppercase;
     background-color: cornsilk;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    max-height: fit-content;
     padding: 7px;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
