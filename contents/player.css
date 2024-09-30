@@ -9,7 +9,7 @@
 
 @keyframes sunrise {
   0% {
-    transform: translateY(100vw);
+    transform: translateY(100vh);
   }
   100% { 
     transform: translateY(0%); 
@@ -26,7 +26,6 @@
   position: fixed;
   width: 500px;  
   animation: ease-in 2s slide-in;
-
   }
 
   #custom-overlay {
@@ -111,5 +110,5 @@
     gap: 15px;
     top: 1vw;
     left: 1vw;
-    animation: ease-in 3s sunrise;
+    animation: 1s ease-in sunrise;
   }
