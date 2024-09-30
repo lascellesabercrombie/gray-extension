@@ -1,6 +1,21 @@
-This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
+## Background
 
-## Getting Started
+Alasdair Gray (1934-2019) was a Scottish writer whose work wittily and movingly disrupted the expectations we often bring to literature, such as those around the division between author and content, the stability and authority of the narrative voice, and the materiality of books and what they describe.
+
+I liked the idea of a simple game that played with some of these concepts, working with and against the familiar patterns of games in a way analogous to how Gray works with prose. By creating an extension, using the (Plasmo framework)[https://www.plasmo.com/docs], there was an opportunity to show how websites, which can appear as something stable and remote, handed over to the user, are in fact operating in a domain where power is contested between client and server. This is demonstrated by allowing the player to respond to and disturb the appearance of the site they choose. 
+
+The simplicity of the game also highlights some of the tropes that continue to structure many games, even as they have achieved increasing higher complexity in many other directions: tropes wherein user choice is generally superficial, and all narrative tends towards a resolution by violence alone. 
+
+Of course, plenty of games have challenged these tropes with greater coherence and severity than this one. But the haphazard, still (as of writing) somewhat glitchy character of this game doesn’t seem inappropriate to an author whose work can treat extensive effort with irony as well as admiration, and professionalism with distrust.
+
+And as the Index of Plagiarisms in Lanark taxonomises, catalogues and (at least in one case) invents the sources that go into any piece of work, it seems appropriate that the game be open source, allowing others to come along and copy, meddle and improve as they please. 
+
+### Image sources:
+
+- Player: cover of [1982, Janine (1984)](https://en.wikipedia.org/wiki/1982,_Janine)
+- Antagonist: [an illustration from a draft of Lanark (1981), found in a post from University of Glasgow’s Special Collections](https://www.gla.ac.uk/myglasgow/library/files/special/exhibns/month/may2002.html)
+
+## Plasmo boilerplate on starting up
 
 First, run the development server:
 
@@ -13,21 +28,3 @@ npm run dev
 Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
 
 You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
-
-For further guidance, [visit our Documentation](https://docs.plasmo.com/)
-
-## Making production build
-
-Run the following:
-
-```bash
-pnpm build
-# or
-npm run build
-```
-
-This should create a production bundle for your extension, ready to be zipped and published to the stores.
-
-## Submit to the webstores
-
-The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
