@@ -3,7 +3,7 @@ import gray_sun from "data-base64:~assets/gray-sun.png"
 import './player.css'
 
 export function Sun({dialogueOptionIndex, isAnswerChoice, isNextDisabled, isSunSpeechBubbleVisible, proceedDialogue, sunSpeechBubbleContents}) {
-    
+
     return (
     <div id="sun">
         <img src={gray_sun} 
@@ -12,7 +12,7 @@ export function Sun({dialogueOptionIndex, isAnswerChoice, isNextDisabled, isSunS
       {isSunSpeechBubbleVisible && 
         <div className="speech-bubble">
         <span>{sunSpeechBubbleContents}</span>
-        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun") && !isAnswerChoice && 
+        {(dialogue[dialogueOptionIndex]?.["speaker"] === "sun" && sunSpeechBubbleContents !== "...") && !isAnswerChoice && 
         <button className="speech-bubble-button" disabled={isNextDisabled} onClick={() => proceedDialogue()}>Next</button>}
         </div>}
     </div>)
