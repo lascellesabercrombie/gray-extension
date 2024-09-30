@@ -46,13 +46,15 @@ export function Player ({
           : 
           <button className="speech-bubble-button" onClick={handleSpeak}>Speak</button>
           }
-          <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
-          style={{
-            width: `${width}px`,
-            height: `${height}px`,
-            transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''
-          }}>
-          </img>
+          <div style={{display: 'flex', alignItems: 'flex-end'}}>
+            <img src={playerAvatar} alt="Vitruvian Man from cover of 1982, Janine"
+            style={{
+              width: `${width}px`,
+              height: `${height}px`,
+              transform: !isPlayerFacingLeft ? 'rotateY(180deg)' : ''
+            }}>
+            </img>
+          </div>
     </div>
     )
 }
