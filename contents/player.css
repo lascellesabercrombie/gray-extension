@@ -90,6 +90,7 @@
     background-color: cornsilk;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     max-height: fit-content;
+    max-width: fit-content;
     padding: 7px;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
