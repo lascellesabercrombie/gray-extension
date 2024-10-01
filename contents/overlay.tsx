@@ -112,12 +112,15 @@ const Overlay = () => {
   
         const windowWidth = window.innerWidth;
         const windowHeight = window.innerHeight;
+
+        const playerWidthVW = (PLAYER_WIDTH / windowWidth) * 100;
+        const playerHeightVH = (PLAYER_HEIGHT / windowHeight) * 100;
   
         const currentPlayerRight = playerRightRef.current;
         const currentPlayerBottom = playerBottomRef.current;
-  
-        const hasHitPlayer = (Math.abs(currentProjRight - currentPlayerRight) <= (PLAYER_WIDTH/windowWidth) &&
-                                  Math.abs(currentProjBottom - currentPlayerBottom) <= (PLAYER_HEIGHT/windowHeight));
+       
+        const hasHitPlayer = (Math.abs(currentProjRight - currentPlayerRight) <= playerWidthVW) &&
+                                  (Math.abs(currentProjBottom - currentPlayerBottom) <= playerHeightVH);
   
         const isOutOfBounds = (currentProjRight < 0 || currentProjRight > windowWidth || 
                                currentProjBottom < 0 || currentProjBottom > windowHeight);
