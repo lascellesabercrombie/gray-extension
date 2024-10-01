@@ -29,3 +29,11 @@ npm run dev
 Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
 
 You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
+
+## Screenshots
+
+| | | |
+| --- | --- | --- |
+| ![Screenshot 2024-10-01 at 14 11 23](https://github.com/user-attachments/assets/376699d0-c965-4610-8add-d58d578b4f48) | ![Screenshot 2024-10-01 at 14 07 11](https://github.com/user-attachments/assets/2a716362-72ef-40e8-b90e-889a101446f3) | ![Screenshot 2024-10-01 at 14 10 48](https://github.com/user-attachments/assets/e551b72b-c8db-4aa4-a4fa-dfe7281416b9) |
+
+
