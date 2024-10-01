@@ -14,6 +14,7 @@ And as the Index of Plagiarisms in Lanark taxonomises, catalogues and (at least 
 
 - Player: cover of [1982, Janine (1984)](https://en.wikipedia.org/wiki/1982,_Janine)
 - Antagonist: [an illustration from a draft of Lanark (1981), found in a post from University of Glasgow’s Special Collections](https://www.gla.ac.uk/myglasgow/library/files/special/exhibns/month/may2002.html)
+- Icon: [Self-portrait by Gray](https://thealasdairgrayarchive.org/timeline/)
 
 ## Plasmo boilerplate on starting up
 
