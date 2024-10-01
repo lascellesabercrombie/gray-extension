@@ -49,6 +49,7 @@ const Overlay = () => {
     const [isOverlayPresent, setIsOverlayPresent] = useState(false)
     const [playerTabIndex, setPlayerTabIndex] = useState(null)
     const [text, setText] = useState("")
+    const [isModalButtonVisible, setIsModalButtonVisible] = useState(true)
 
     const playerRightRef = useRef(playerRight);
     const playerBottomRef = useRef(playerBottom); 
@@ -150,10 +151,12 @@ const Overlay = () => {
       setModalTitleContents("Victory")
       setModalPararaphContents("Well dodged.")
       setIsModalOpen(true)
+      setIsModalButtonVisible(false)
     } else if (isVictory === false){
       setModalTitleContents("Defeat")
       setModalPararaphContents("You were burnt to a crisp.")
       setIsModalOpen(true)
+      setIsModalButtonVisible(false)
     }
     
   }, [isVictory])
@@ -330,6 +333,7 @@ maxHeight: '100%'}} ></img>
     modalTitleContents={modalTitleContents}
     modalParagraphContents={modalParagraphContents}
     handleToggleModal={handleToggleModal}
+    isModalButtonVisible={isModalButtonVisible}
     />}
     {showPlayer &&
     <Player
